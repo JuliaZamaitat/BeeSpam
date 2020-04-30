@@ -1,13 +1,13 @@
+
 on run {targetBuddyPhone}
 
-set thank_yous to returnFileContentsAsList("/Users/Julia/Documents/BeeSpam/beeMovie.txt")
-log thank_yous
+set file_content to returnFileContentsAsList("/Users/Julia/Documents/BeeSpam/beeMovie.txt")
 
   tell application "Messages"
       set targetService to 1st service whose service type = iMessage
       set targetBuddy to buddy targetBuddyPhone of targetService
-      repeat with theItem in thank_yous
-        send theItem to targetBuddy
+      repeat with singleLine in file_content
+        send singleLine to targetBuddy
       end repeat
   end tell
   end run

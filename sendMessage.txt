@@ -1,0 +1,20 @@
+on run {targetBuddyPhone}
+
+set thank_yous to returnFileContentsAsList("/Users/Julia/Documents/BeeSpam/beeMovie.txt")
+log thank_yous
+
+  tell application "Messages"
+      set targetService to 1st service whose service type = iMessage
+      set targetBuddy to buddy targetBuddyPhone of targetService
+      repeat with theItem in thank_yous
+        send theItem to targetBuddy
+      end repeat
+  end tell
+  end run
+
+on returnFileContentsAsList(theFile)
+  set fileHandle to open for access theFile
+  set theLines to paragraphs of (read fileHandle)
+  close access fileHandle
+  return theLines
+end
